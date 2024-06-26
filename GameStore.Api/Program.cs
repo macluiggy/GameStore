@@ -44,6 +44,19 @@ app.MapPut("/games/{id}", (int id, UpdateGameDto game) =>
   return Results.NoContent();
 });
 
+// DELETE /games/1
+app.MapDelete("/games/{id}", (int id) =>
+{
+  var index = games.FindIndex(g => g.Id == id);
+  if (index == -1)
+  {
+    return Results.NotFound();
+  }
+  games.RemoveAt(index);
+
+  return Results.NoContent();
+});
+
 // app.MapGet("/", () => "Hello World!");
 
 app.Run();
