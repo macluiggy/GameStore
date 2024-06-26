@@ -13,22 +13,23 @@ public static class GamesEndpoints
   new (5, "The Witcher 3: Wild Hunt", "Action RPG", 39.99M, new DateOnly(2015, 5, 19))
   ];
 
-  public static WebApplication MapGamesEndpoints(this WebApplication app)
+  public static RouteGroupBuilder MapGamesEndpoints(this WebApplication app)
   {
 
+    var group = app.MapGroup("games");
     // GET /games
-    app.MapGet("/games", () => games);
+    group.MapGet("", () => games);
 
-    // GET /games/1
-    app.MapGet("/games/{id}", (int id) =>
+    // GET /1
+    group.MapGet("/{id}", (int id) =>
     {
       var game = games.Find(g => g.Id == id);
       return game is null ? Results.NotFound() : Results.Ok(game);
     })
     .WithName(GetGameByIdRouteName);
 
-    // POST /games
-    app.MapPost("/games", (CreateGameDto game) =>
+    // POST 
+    group.MapPost("", (CreateGameDto game) =>
     {
       GameDto newGame = new(games.Count + 1, game.Name, game.Genre, game.Price, game.ReleaseDate);
       games.Add(newGame);
@@ -36,8 +37,8 @@ public static class GamesEndpoints
       return Results.CreatedAtRoute(GetGameByIdRouteName, new { id = newGame.Id }, newGame);
     });
 
-    // PUT /games/1
-    app.MapPut("/games/{id}", (int id, UpdateGameDto game) =>
+    // PUT /1
+    group.MapPut("/{id}", (int id, UpdateGameDto game) =>
     {
       var index = games.FindIndex(g => g.Id == id);
       if (index == -1)
@@ -49,8 +50,8 @@ public static class GamesEndpoints
       return Results.NoContent();
     });
 
-    // DELETE /games/1
-    app.MapDelete("/games/{id}", (int id) =>
+    // DELETE /1
+    group.MapDelete("/{id}", (int id) =>
     {
       var index = games.FindIndex(g => g.Id == id);
       if (index == -1)
@@ -62,6 +63,6 @@ public static class GamesEndpoints
       return Results.NoContent();
     });
 
-    return app;
+    return group;
   }
 }
