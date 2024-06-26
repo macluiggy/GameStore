@@ -10,6 +10,7 @@ Content-Type: application/json
 {
     "name": "Game 1",
     "description": "Description 1",
+    "genre": "Action",
     "price": 100
 }
 

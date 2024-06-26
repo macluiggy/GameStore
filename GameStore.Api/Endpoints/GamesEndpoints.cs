@@ -29,13 +29,14 @@ public static class GamesEndpoints
     .WithName(GetGameByIdRouteName);
 
     // POST 
-    group.MapPost("", (CreateGameDto game) =>
+    group.MapPost("/", (CreateGameDto game) =>
     {
       GameDto newGame = new(games.Count + 1, game.Name, game.Genre, game.Price, game.ReleaseDate);
       games.Add(newGame);
       // return game;
       return Results.CreatedAtRoute(GetGameByIdRouteName, new { id = newGame.Id }, newGame);
-    });
+    })
+    .WithParameterValidation();
 
     // PUT /1
     group.MapPut("/{id}", (int id, UpdateGameDto game) =>
