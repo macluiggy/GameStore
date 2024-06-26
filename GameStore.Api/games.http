@@ -1,1 +1,24 @@
-GET http://localhost:3000/
+GET http://localhost:3000/games
+
+###
+GET http://localhost:3000/games/1
+
+###
+POST http://localhost:3000/games
+Content-Type: application/json
+
+{
+    "name": "Game 1",
+    "description": "Description 1",
+    "price": 100
+}
+
+###
+PUT http://localhost:3000/games/1
+Content-Type: application/json
+
+{
+    "name": "Game updated",
+    "description": "Description updated",
+    "price": 100
+}
