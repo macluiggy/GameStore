@@ -19,7 +19,7 @@ PUT http://localhost:3000/games/1
 Content-Type: application/json
 
 {
-    "named": "Game updated",
+    "name": "Game updated",
     "description": "Description updated",
     "price": 100
 }
