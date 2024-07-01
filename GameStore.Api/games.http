@@ -10,8 +10,9 @@ Content-Type: application/json
 {
     "name": "Game 1",
     "description": "Description 1",
-    "genre": "Action",
-    "price": 100
+    "genreId": 1,
+    "price": 100,
+    "releaseDate": "2021-01-01"
 }
 
 ###
