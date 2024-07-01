@@ -60,3 +60,5 @@ TestResults/
 *.bak
 *.log
 *.swp
+
+GameStore.db
