@@ -12,7 +12,7 @@ Content-Type: application/json
     "description": "Description 1",
     "genreId": 1,
     "price": 100,
-    "releaseDate": "2021-01-01"
+    "ReleaseDate": "2021-01-01"
 }
 
 ###
